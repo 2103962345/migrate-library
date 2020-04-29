@@ -28,23 +28,22 @@ REM (optional) build.bat is in the root of our repo, cd to the correct folder wh
 
 REM Restore
 call dotnet restore
+call "C:\temp\nuget.exe" restore Vehicle.sln
 if not "%errorlevel%"=="0" goto failure
 
 REM Build
-:call "%msbuild%" MSTestMoqExample.sln /p:Configuration="%config%" /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=Normal /nr:false
-call dotnet build --configuration %config%
+call "%msbuild%" Vehicle.sln /p:Configuration="%config%" /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=Normal /nr:false
 if not "%errorlevel%"=="0" goto failure
 
 cd tests\Car.Tests
 REM Unit tests
-call dotnet test 
-if not "%errorlevel%"=="0" goto failure
+call "C:\temp\nuget.exe" install XUnit.Runners.Console -Version 2.4.1 -OutputDirectory packages
+packages\NUnit.Runners.Console.2.4.1\tools\net452\xunit.console.exe /config:%config% /framework:net-4.5 bin\%config%\Car.Tests.dll
 
 cd ..\..
-:REM Package
-mkdir %cd%\..\artifacts
-cd src\Car
-call dotnet pack PrimeService --configuration %config% %packversionsuffix% --output %cd%\..\artifacts
+
+mkdir Build
+call %nuget% pack "migrate-library\src\Car\Car.csproj" -symbols -o Build -p Configuration=%config% %version%
 if not "%errorlevel%"=="0" goto failure
 
 :success
