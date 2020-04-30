@@ -27,11 +27,11 @@ REM (optional) build.bat is in the root of our repo, cd to the correct folder wh
 
 
 echo Restore
-:call "C:\temp\nuget.exe" restore Vehicle.sln
-call "C:\temp\nuget.exe" restore "src\Car\packages.config" -OutputDirectory %cd%\src\Car\packages -NonInteractive
-call "C:\temp\nuget.exe" restore "src\Car\Car.csproj" -OutputDirectory %cd%\src\Car\packages -NonInteractive
-call "C:\temp\nuget.exe" restore "tests\Car.Tests\packages.config" -OutputDirectory %cd%\tests\Car.tests\packages -NonInteractive
-call "C:\temp\nuget.exe" restore "tests\Car.Tests\Car.Tests.csproj" -OutputDirectory %cd%\tests\Car.tests\packages -NonInteractive
+call "C:\temp\nuget.exe" restore Vehicle.sln
+:call "C:\temp\nuget.exe" restore "src\Car\packages.config" -OutputDirectory %cd%\src\Car\packages -NonInteractive
+:call "C:\temp\nuget.exe" restore "src\Car\Car.csproj" -OutputDirectory %cd%\src\Car\packages -NonInteractive
+:call "C:\temp\nuget.exe" restore "tests\Car.Tests\packages.config" -OutputDirectory %cd%\tests\Car.tests\packages -NonInteractive
+:call "C:\temp\nuget.exe" restore "tests\Car.Tests\Car.Tests.csproj" -OutputDirectory %cd%\tests\Car.tests\packages -NonInteractive
 :if not "%errorlevel%"=="0" goto failure
 
 echo Build
@@ -47,7 +47,7 @@ cd ..\..
 
 echo Pack
 mkdir Build
-call "C:\temp\nuget.exe" pack "src\Car\Car.csproj" -Symbols -OutputDirectory Build -Properties Configuration=%config% -Version %version%
+call "C:\temp\nuget.exe" pack "src\Car\Car.csproj" -Symbols -OutputDirectory Build -Properties Configuration=%config%;version="%version%"
 if not "%errorlevel%"=="0" goto failure
 
 :success
