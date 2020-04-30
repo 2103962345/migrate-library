@@ -47,7 +47,7 @@ cd ..\..
 
 echo Pack
 mkdir Build
-call %nuget% pack "migrate-library\src\Car\Car.csproj" -symbols -o Build -p Configuration=%config% %version%
+call %nuget% pack "src\Car\Car.csproj" -symbols -o Build -p Configuration=%config% %version%
 if not "%errorlevel%"=="0" goto failure
 
 :success
