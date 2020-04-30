@@ -27,10 +27,10 @@ REM (optional) build.bat is in the root of our repo, cd to the correct folder wh
 
 
 REM Restore
-call "C:\temp\nuget.exe" restore Vehicle.sln
+:call "C:\temp\nuget.exe" restore Vehicle.sln
 call "C:\temp\nuget.exe" restore src\Car\packages.config -OutputDirectory %cd%\packages -NonInteractive
 call "C:\temp\nuget.exe" restore tests\Car.Tests\packages.config -OutputDirectory %cd%\packages -NonInteractive
-if not "%errorlevel%"=="0" goto failure
+:if not "%errorlevel%"=="0" goto failure
 
 REM Build
 call "%msbuild%" Vehicle.sln /p:Configuration="%config%" /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=Normal /nr:false
@@ -38,8 +38,7 @@ if not "%errorlevel%"=="0" goto failure
 
 cd tests\Car.Tests
 REM Unit tests
-call "C:\temp\nuget.exe" install XUnit.Runners.Console -Version 2.4.1 -OutputDirectory packages
-packages\NUnit.Runners.Console.2.4.1\tools\net452\xunit.console.exe /config:%config% /framework:net-4.5 bin\%config%\Car.Tests.dll
+call "C:\temp\nuget.exe" install xunit.runner.console -Version 2.4.1 -OutputDirectory packages\xunit.runner.console.2.4.1\tools\net452\xunit.console.exe /config:%config% /framework:net-4.5 bin\%config%\Car.Tests.dll
 
 cd ..\..
 
