@@ -37,7 +37,7 @@ if not "%errorlevel%"=="0" goto failure
 cd tests\Car.Tests
 echo Unit tests
 call "C:\temp\nuget.exe" install xunit.runner.console -Version 2.4.1 -OutputDirectory packages 
-packages\xunit.runner.console.2.4.1\tools\net46\xunit.console.exe bin\%config%\Car.Tests.dll
+packages\xunit.runner.console.2.4.1\tools\net472\xunit.console.exe bin\%config%\Car.Tests.dll
 
 cd ..\..
 
