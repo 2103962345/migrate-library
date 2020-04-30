@@ -32,16 +32,17 @@ call "C:\temp\nuget.exe" restore "src\Car\packages.config" -OutputDirectory %cd%
 call "C:\temp\nuget.exe" restore "tests\Car.Tests\packages.config" -OutputDirectory %cd%\packages -NonInteractive
 :if not "%errorlevel%"=="0" goto failure
 
-REM Build
+echo Build
 call "%msbuild%" Vehicle.sln /p:Configuration="%config%" /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=Normal /nr:false
 if not "%errorlevel%"=="0" goto failure
 
 cd tests\Car.Tests
-REM Unit tests
+echo Unit tests
 call "C:\temp\nuget.exe" install xunit.runner.console -Version 2.4.1 -OutputDirectory packages\xunit.runner.console.2.4.1\tools\net452\xunit.console.exe /config:%config% /framework:net-4.5 bin\%config%\Car.Tests.dll
 
 cd ..\..
 
+echo Pack
 mkdir Build
 call %nuget% pack "migrate-library\src\Car\Car.csproj" -symbols -o Build -p Configuration=%config% %version%
 if not "%errorlevel%"=="0" goto failure
