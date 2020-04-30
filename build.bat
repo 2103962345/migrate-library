@@ -28,8 +28,8 @@ REM (optional) build.bat is in the root of our repo, cd to the correct folder wh
 
 REM Restore
 :call "C:\temp\nuget.exe" restore Vehicle.sln
-call "C:\temp\nuget.exe" restore src\Car\packages.config -OutputDirectory %cd%\packages -NonInteractive
-call "C:\temp\nuget.exe" restore tests\Car.Tests\packages.config -OutputDirectory %cd%\packages -NonInteractive
+call "C:\temp\nuget.exe" restore "src\Car\packages.config" -OutputDirectory %cd%\packages -NonInteractive
+call "C:\temp\nuget.exe" restore "tests\Car.Tests\packages.config" -OutputDirectory %cd%\packages -NonInteractive
 :if not "%errorlevel%"=="0" goto failure
 
 REM Build
