@@ -47,7 +47,7 @@ cd ..\..
 
 echo Pack
 mkdir Build
-call "C:\temp\nuget.exe" pack "src\Car\Car.csproj" -symbols -o Build -p Configuration=%config% %version%
+call "C:\temp\nuget.exe" pack "src\Car\Car.csproj" -Symbols -OutputDirectory Build -Properties Configuration=%config% -Version %version%
 if not "%errorlevel%"=="0" goto failure
 
 :success
