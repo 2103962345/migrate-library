@@ -1,0 +1,8 @@
+C:\Users\alexb\Repos\migrate-library\src\Car\bin\Debug\Car.dll
+C:\Users\alexb\Repos\migrate-library\src\Car\bin\Debug\Car.pdb
+C:\Users\alexb\Repos\migrate-library\src\Car\bin\Debug\Newtonsoft.Json.dll
+C:\Users\alexb\Repos\migrate-library\src\Car\bin\Debug\Newtonsoft.Json.xml
+C:\Users\alexb\Repos\migrate-library\src\Car\obj\Debug\Car.csproj.CoreCompileInputs.cache
+C:\Users\alexb\Repos\migrate-library\src\Car\obj\Debug\Car.csproj.CopyComplete
+C:\Users\alexb\Repos\migrate-library\src\Car\obj\Debug\Car.dll
+C:\Users\alexb\Repos\migrate-library\src\Car\obj\Debug\Car.pdb
