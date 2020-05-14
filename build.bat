@@ -27,7 +27,7 @@ REM (optional) build.bat is in the root of our repo, cd to the correct folder wh
 
 
 echo Restore
-call "C:\temp\nuget.exe" restore Vehicle.sln
+call %nuget% restore Vehicle.sln
 if not "%errorlevel%"=="0" goto failure
 
 echo Build
@@ -36,14 +36,14 @@ if not "%errorlevel%"=="0" goto failure
 
 cd tests\Car.Tests
 echo Unit tests
-call "C:\temp\nuget.exe" install xunit.runner.console -Version 2.4.1 -OutputDirectory packages 
+call %nuget% install xunit.runner.console -Version 2.4.1 -OutputDirectory packages 
 packages\xunit.runner.console.2.4.1\tools\net47\xunit.console.exe bin\%config%\Car.Tests.dll
 
 cd ..\..
 
 echo Pack
 mkdir Build
-call "C:\temp\nuget.exe" pack "src\Car\Car.csproj" -Symbols -OutputDirectory Build -Properties Configuration=%config%;version="%version%"
+call %nuget% pack "src\Car\Car.csproj" -Symbols -OutputDirectory Build -Properties Configuration=%config%;version="%version%"
 if not "%errorlevel%"=="0" goto failure
 
 :success
