@@ -31,7 +31,7 @@ call nuget restore Vehicle.sln
 if not "%errorlevel%"=="0" goto failure
 
 echo Build
-call "%msbuild%" Vehicle.sln /p:Configuration="%config%" /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=Normal /nr:false
+call msbuild Vehicle.sln /p:Configuration="%config%" /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=Normal /nr:false
 if not "%errorlevel%"=="0" goto failure
 
 cd tests\Car.Tests
